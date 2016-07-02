@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blog'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -51,7 +52,7 @@ MIDDLEWARE_CLASSES = [
 ]
 
 ROOT_URLCONF = 'lonesome_zeus.urls'
-
+TEMPLATE_DEBUG = True
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
