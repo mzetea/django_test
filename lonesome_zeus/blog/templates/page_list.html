@@ -5,11 +5,20 @@
 {% endblock %}
 
 {% block content %}
-        <ul>
+        <table class = "table table-striped">
             {% for page in object_list %}
-                <li style="color: {% cycle 'red' 'blue' %}">
-                    <a href="/page/{{page.pk}}">{{ page.title }}</a>, {{ page.author }}</li>
-                <p>{{page.summary}}</p>
+                <tr>
+                <td>&nbsp;#{{ page.id }}</td>
+                <td><a href="{% url "page_detail" page_id=page.pk %}">{{ page.title }}</a></td>
+                <td>{{ page.author }}</td>
+                <td><small>{{ page.summary|slice:":500" }}</small></td>
+                <td>
+                    <div class = "btn-group btn-group-sm pull-right">
+                        <a class="btn btn-default" href="{% url "page_detail" page_id=page.pk %}">Detail</a>
+                        <a class="btn btn-success" href="#"><span class = "glyphicon glyphicon-edit"></span> Edit</a>
+                    </div>
+                </td>
+                </tr>
             {% endfor %}
-        </ul>
+        </table>
 {% endblock %}

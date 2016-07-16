@@ -19,9 +19,9 @@ from django.contrib import admin
 from blog.views import index, PageListView, page
 
 urlpatterns = [
-    url(r'^hello/', index),
-    url(r'^blog/', PageListView.as_view()),
-    url(r'^page/(?P<page_id>[0-9])/$', page),
+    url(r'^$', index, name="home"),
+    url(r'^blog/', PageListView.as_view(), name="page_list"),
+    url(r'^page/(?P<page_id>[0-9])/$', page, name="page_detail"),
     url(r'^admin/', admin.site.urls),
 ]
 
