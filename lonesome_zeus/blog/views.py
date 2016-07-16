@@ -1,9 +1,10 @@
-from django.shortcuts import render, render_to_response
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import render_to_response
 from django.views.generic import ListView
-from django.http import HttpResponse
-from django.template import RequestContext
 
+from blog.forms import PageForm
 from .models import Page
+
 
 class PageListView(ListView):
     model = Page
@@ -27,3 +28,12 @@ def page(request, page_id):
     return render_to_response(
         "page.html",
         context={'page': page_obj})
+
+
+def page_edit(request, page_id):
+    page_obj = Page.objects.get(pk=page_id)
+    if request.method == "POST":
+        form = PageForm(request.POST, instance=page_obj)
+        if form.is_valid():
+            obj = form.save()
+            return HttpResponseRedirect(reverse())
