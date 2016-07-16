@@ -1,11 +1,9 @@
 {% extends "base.html" %}
 
-{% block page_heading %}{{ page.title }}{% endblock %}
+{% block page_heading %}
+    {{ page.title }}
+{% endblock %}
 
 {% block content %}
-    <div style = "padding-bottom: 10px">
-    <a href = "{% url "page_list" %}" class = "btn btn-info"><span class = "glyphicon glyphicon-chevron-left"></span> Back to list</a>
-    </div>
-
     {{ page.content }}
 {% endblock %}
