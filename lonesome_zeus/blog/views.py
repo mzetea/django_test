@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.views.generic import ListView
@@ -36,4 +37,9 @@ def page_edit(request, page_id):
         form = PageForm(request.POST, instance=page_obj)
         if form.is_valid():
             obj = form.save()
-            return HttpResponseRedirect(reverse())
+            return HttpResponseRedirect(reverse("page_detail", kwargs={"page_id": page_obj.id}))
+    else:
+        form = PageForm(instance=page_obj)
+
+    context = {"form": form, "page_obj": page_obj}
+    return render_to_response("page_edit.html", context)

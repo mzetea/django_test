@@ -6,3 +6,4 @@ from blog.models import Page
 class PageForm(ModelForm):
     class Meta:
         model = Page
+        exclude = []

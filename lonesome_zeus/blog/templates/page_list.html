@@ -15,7 +15,7 @@
                 <td>
                     <div class = "btn-group btn-group-sm pull-right">
                         <a class="btn btn-default" href="{% url "page_detail" page_id=page.pk %}">Detail</a>
-                        <a class="btn btn-success" href="#"><span class = "glyphicon glyphicon-edit"></span> Edit</a>
+                        <a class="btn btn-success" href="{% url "page_edit" page_id=page.pk %}"><span class = "glyphicon glyphicon-edit"></span> Edit</a>
                     </div>
                 </td>
                 </tr>

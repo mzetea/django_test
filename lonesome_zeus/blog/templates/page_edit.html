@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block page_heading %}
+    {{ page.title }}
+{% endblock %}
+
+{% block content %}
+    <form action="" method="POST">
+    {{ form.as_p }}
+
+    <p>
+        <input type="button" value="Save" class = "btn btn-success">
+    </p>
+    </form>
+{% endblock %}
