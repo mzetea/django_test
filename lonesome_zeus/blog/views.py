@@ -36,7 +36,9 @@ def page_edit(request, page_id):
     if request.method == "POST":
         form = PageForm(request.POST, instance=page_obj)
         if form.is_valid():
-            obj = form.save()
+            obj = form.save(commit=False)
+            obj.author = "TESTTEST"
+            obj.save()
             return HttpResponseRedirect(reverse("page_detail", kwargs={"page_id": page_obj.id}))
     else:
         form = PageForm(instance=page_obj)
