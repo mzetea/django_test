@@ -1,6 +1,7 @@
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render_to_response
+from django.template.context import RequestContext
 from django.views.generic import ListView
 
 from blog.forms import PageForm
@@ -44,4 +45,4 @@ def page_edit(request, page_id):
         form = PageForm(instance=page_obj)
 
     context = {"form": form, "page_obj": page_obj}
-    return render_to_response("page_edit.html", context)
+    return render_to_response("page_edit.html", context, context_instance=RequestContext(request))
