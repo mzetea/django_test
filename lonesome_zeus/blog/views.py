@@ -15,8 +15,8 @@ def index(request):
 
     return render_to_response(
         "page_list.html",
-        context={'object_list': pages},
-        context_instance=RequestContext(request))
+        context={'object_list': pages})
+
 
 def page(request, page_id):
     page_obj = Page.objects.get(pk=page_id)
@@ -26,5 +26,4 @@ def page(request, page_id):
 
     return render_to_response(
         "page.html",
-        context={'page': page_obj},
-        context_instance=RequestContext(request))
+        context={'page': page_obj})

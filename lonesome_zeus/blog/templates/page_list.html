@@ -1,9 +1,10 @@
-<html>
-    <head>
-        <title>List Pages</title>
-    </head>
-    <body>
-        <h2>List of pages</h2>
+{% extends 'base.html' %}
+
+{% block page_heading %}
+    List pages
+{% endblock %}
+
+{% block content %}
         <ul>
             {% for page in object_list %}
                 <li style="color: {% cycle 'red' 'blue' %}">
@@ -11,5 +12,4 @@
                 <p>{{page.summary}}</p>
             {% endfor %}
         </ul>
-    </body>
-</html>
+{% endblock %}
