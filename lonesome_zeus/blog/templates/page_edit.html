@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block page_heading %}
+    {{ page.title }}
+{% endblock %}
+
+{% block content %}
+    <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <p>
+        <input type="submit" value="Save" class = "btn btn-success">
+    </p>
+    </form>
+{% endblock %}

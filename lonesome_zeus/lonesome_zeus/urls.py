@@ -16,12 +16,13 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from blog.views import index, PageListView, page
+from blog.views import index, PageListView, page, page_edit
 
 urlpatterns = [
-    url(r'^hello/', index),
-    url(r'^blog/', PageListView.as_view()),
-    url(r'^page/(?P<page_id>[0-9])/$', page),
+    url(r'^$', index, name="home"),
+    url(r'^blog/', PageListView.as_view(), name="page_list"),
+    url(r'^page/(?P<page_id>[0-9])/$', page, name="page_detail"),
+    url(r'^page/(?P<page_id>[0-9])/edit$', page_edit, name="page_edit"),
     url(r'^admin/', admin.site.urls),
 ]
 

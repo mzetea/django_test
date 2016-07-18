@@ -1,9 +1,12 @@
-from django.shortcuts import render, render_to_response
+from django.core.urlresolvers import reverse
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import render_to_response
+from django.template.context import RequestContext
 from django.views.generic import ListView
-from django.http import HttpResponse
-from django.template import RequestContext
 
+from blog.forms import PageForm
 from .models import Page
+
 
 class PageListView(ListView):
     model = Page
@@ -15,8 +18,8 @@ def index(request):
 
     return render_to_response(
         "page_list.html",
-        context={'object_list': pages},
-        context_instance=RequestContext(request))
+        context={'object_list': pages})
+
 
 def page(request, page_id):
     page_obj = Page.objects.get(pk=page_id)
@@ -26,5 +29,20 @@ def page(request, page_id):
 
     return render_to_response(
         "page.html",
-        context={'page': page_obj},
-        context_instance=RequestContext(request))
+        context={'page': page_obj})
+
+
+def page_edit(request, page_id):
+    page_obj = Page.objects.get(pk=page_id)
+    if request.method == "POST":
+        form = PageForm(request.POST, instance=page_obj)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.author = "TESTTEST"
+            obj.save()
+            return HttpResponseRedirect(reverse("page_detail", kwargs={"page_id": page_obj.id}))
+    else:
+        form = PageForm(instance=page_obj)
+
+    context = {"form": form, "page_obj": page_obj}
+    return render_to_response("page_edit.html", context, context_instance=RequestContext(request))

@@ -1,9 +1,9 @@
-<html>
-    <head>
-        <title>List Individual page</title>
-    </head>
-    <body>
-        <h2>Page title: {{page.title}}</h2>
+{% extends "base.html" %}
 
-    </body>
-</html>
+{% block page_heading %}
+    {{ page.title }}
+{% endblock %}
+
+{% block content %}
+    {{ page.content }}
+{% endblock %}
